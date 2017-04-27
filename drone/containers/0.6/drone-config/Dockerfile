@@ -5,14 +5,14 @@ LABEL vendor="Rancher Labs, Inc." \
 	com.rancher.version="0.5" \
 	com.rancher.repo="https://github.com/rancher/catalog-dockerfiles"
 
-ENV GIDDYUP_VERSION='v0.16.0' CONFD_VERSION='v0.11.0'
+ENV GIDDYUP_VERSION='v0.16.0' CONFD_VERSION='0.11.0-dev-rancher'
 
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 ADD ./confd/ /etc/confd/
 
 ADD "https://github.com/rancher/giddyup/releases/download/${GIDDYUP_VERSION}/giddyup /giddyup"
-ADD "https://github.com/rancher/confd/releases/download/${CONFD_VERSION/confd-${CONFD_VERSION}-amd64 /confd"
+ADD "https://github.com/rancher/confd/releases/download/${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 /confd"
 ADD /scripts/*.sh /opt/rancher/scripts/
 
 RUN chmod +x /confd /giddyup /opt/rancher/scripts/*
